@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.dw</groupId>
+  <groupId>com.codetailor</groupId>
   <artifactId>aws-proxy</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
@@ -11,6 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <commons-lang3.version>3.5</commons-lang3.version>
   </properties>
 
   <parent>
@@ -18,20 +19,10 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.9.RELEASE</version>
   </parent>
+  
+  <packaging>war</packaging>
 
   <dependencies>
-    <!-- exclude default log (logback) -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
     <!-- Web MVC -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -57,6 +48,38 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Utility Libraries: Common -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+    
+    <!-- apache commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-zuul</artifactId>
+      <version>1.4.3.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-core</artifactId>
+      <version>1.11.301</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -80,7 +103,6 @@
         <configuration>
           <configLocation>${basedir}/src/main/resources/google_checks.xml</configLocation>
           <consoleOutput>true</consoleOutput>
-          <excludes>**/db/migration/*</excludes>
         </configuration>
         <executions>
           <execution>
