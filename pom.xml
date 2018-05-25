@@ -12,6 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <commons-lang3.version>3.5</commons-lang3.version>
+    <spring-boot-util.version>1.0.0</spring-boot-util.version>
   </properties>
 
   <parent>
@@ -78,6 +79,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-tomcat</artifactId>
         <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.codetailor</groupId>
+      <artifactId>spring-boot-util</artifactId>
+      <version>${spring-boot-util.version}</version>
     </dependency>
 
   </dependencies>
